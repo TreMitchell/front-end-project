@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for NBA Players</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <nav>
+        <ul>
+          <li><a href="players.html">Players</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="standings.html">Standings</a></li>
+        </ul>
+      </nav>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for a player" />
+        <button id="search-button">Search</button>
+      </div>
+
+      <!-- Fetching player data -->
+      <div id="player-list"></div>
+    </main>
+    <script>
+      // Wait for the DOM to fully load
+      document.addEventListener('DOMContentLoaded', () => {
+        // Fetch data from the JSON file
+        fetch('players.json')
+          .then((response) => response.json())
+          .then((data) => {
+            const players = data.players;
+            const playerList = document.getElementById('player-list');
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+
+            function displayPlayers(playersToDisplay) {
+              playerList.innerHTML = ''; // Clear previous results
+              playersToDisplay.forEach((player) => {
+                playerList.innerHTML += `
+                                <div>
+                                    <h2>${player.name}</h2>
+                                    <p>Team: ${player.team}</p>
+                                    <p>Position: ${player.position}</p>
+                                    <p>Number: ${player.number}</p>
+                                    <p>Height: ${player.height}</p>
+                                    <p>Weight: ${player.weight}</p>
+                                    <p>Birthdate: ${player.birthdate}</p>
+                                    <p>Years Pro: ${player.pro}</p>
+                                </div>
+                                <hr>
+                            `;
+              });
+            }
+
+            // Initial display of all players
+            displayPlayers(players);
+
+            // Search functionality
+            searchButton.addEventListener('click', () => {
+              const searchTerm = searchInput.value.toLowerCase();
+              const filteredPlayers = players.filter((player) =>
+                player.name.toLowerCase().includes(searchTerm),
+              );
+              displayPlayers(filteredPlayers); // Display only filtered players
+            });
+          })
+          .catch((error) => console.error('Error loading player data:', error));
+      });
+    </script>
+    <!-- <script src="js/data.js"></script> -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

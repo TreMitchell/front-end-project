@@ -1,8 +1,22 @@
 // nba-api.ts
 
+//  interface playerInfo {
+//   id: number;
+//   name: string;
+//   firstName: string;
+//   lastName: string;
+//   birthday: string;
+//   college: string;
+//   country: string;
+//   number: number;
+//   height: string
+//   feet: null;
+//   inches: null;
+// }
+
 // Store API headers for RapidAPI
 const apiHeaders = {
-  'X-RapidAPI-Key': '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020', // Replace with your actual RapidAPI key
+  'X-RapidAPI-Key': '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020',
   'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com',
 };
 
@@ -59,8 +73,11 @@ async function getNbaPlayers(
     }
 
     const data = await response.json();
-    const teamName = teamNames[teamId]; // Get the team name from the mapping
-    console.log(`NBA Players Data for ${teamName} in Season ${season}:`, data);
+    const teamName = teamNames[teamId];
+    console.log(
+      `NBA Players for ${teamName} during the ${season}: season`,
+      data,
+    );
   } catch (error) {
     console.error('Error fetching data from NBA API:', error);
   }
@@ -68,7 +85,7 @@ async function getNbaPlayers(
 
 // Main function to orchestrate fetching teams and players
 async function main(teamId: number, season: number): Promise<void> {
-  const teamNames = await fetchTeams(); // Fetch team names and IDs
+  const teamNames = await fetchTeams(); // Fetching team names and IDs
 
   // Call the function to get players
   await getNbaPlayers(teamId, season, teamNames);

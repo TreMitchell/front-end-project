@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Project</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <nav>
+        <ul>
+          <li><a href="players.html">Players</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="standings.html">Standings</a></li>
+        </ul>
+      </nav>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for a team " />
+        <button id="search-button">Search</button>
+      </div>
+
+      <div id="teams-list"></div>
+    </main>
+    <script>
+      // Wait for the DOM to fully load
+      document.addEventListener('DOMContentLoaded', () => {
+        // Fetch data from the JSON file
+        fetch('teams.json')
+          .then((response) => response.json())
+          .then((data) => {
+            const teams = data.teams;
+            const teamsList = document.getElementById('teams-list');
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+
+            function displayTeams(teamsToDisplay) {
+              teamsList.innerHTML = ''; // Clear previous results
+              teamsToDisplay.forEach((team) => {
+                teamsList.innerHTML += `
+                                <div>
+                                    <h2>${team.name}</h2>
+                                    <p>Division: ${team.division}</p>
+                                    <p>Conference: ${team.conference}</p>
+                                    <p>Championships: ${team.championships}</p>
+                                </div>
+                                <hr>
+                            `;
+              });
+            }
+
+            // Initial display of all players
+            displayTeams(teams);
+
+            // Search functionality
+            searchButton.addEventListener('click', () => {
+              const searchTerm = searchInput.value.toLowerCase();
+              const filteredTeams = teams.filter((player) =>
+                player.name.toLowerCase().includes(searchTerm),
+              );
+              displayTeams(filteredTeams); // Display only filtered players
+            });
+          })
+          .catch((error) => console.error('Error loading player data:', error));
+      });
+    </script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

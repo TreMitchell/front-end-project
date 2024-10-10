@@ -1,0 +1,214 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "Atlanta Hawks",
+      "division": "Southeast",
+      "conference": "East",
+      "championships": 1
+    },
+    {
+      "id": 2,
+      "name": "Boston Celtics",
+      "division": "Atlantic",
+      "conference": "East",
+      "championships": 18
+    },
+    {
+      "id": 3,
+      "name": "Brooklyn Nets",
+      "division": "Atlantic",
+      "conference": "East",
+      "championships": 2
+    },
+    {
+      "id": 4,
+      "name": "Charlotte Hornets",
+      "division": "Southeast",
+      "conference": "East",
+      "championships": 0
+    },
+    {
+      "id": 5,
+      "name": "Chicago Bulls",
+      "division": "Central",
+      "conference": "East",
+      "championships": 6
+    },
+    {
+      "id": 6,
+      "name": "Cleveland Cavaliers",
+      "division": "Central",
+      "conference": "East",
+      "championships": 1
+    },
+    {
+      "id": 7,
+      "name": "Dallas Mavericks",
+      "division": "Southwest",
+      "conference": "West",
+      "championships": 1
+    },
+    {
+      "id": 8,
+      "name": "Denver Nuggets",
+      "division": "Northwest",
+      "conference": "West",
+      "championships": 1
+    },
+    {
+      "id": 9,
+      "name": "Detriot Pistons",
+      "division": "Central",
+      "conference": "East",
+      "championships": 3
+    },
+    {
+      "id": 10,
+      "name": "Golden State Warriors",
+      "division": "Pacific",
+      "conference": "West",
+      "championships": 7
+    },
+    {
+      "id": 11,
+      "name": "Houston Rockets",
+      "division": "Southwest",
+      "conference": "West",
+      "championships": 2
+    },
+    {
+      "id": 12,
+      "name": "Indiana Pacers",
+      "division": "Central",
+      "conference": "East",
+      "championships": 3
+    },
+    {
+      "id": 13,
+      "name": "Los Angeles Clippers",
+      "division": "Pacific",
+      "conference": "West",
+      "championships": 0
+    },
+    {
+      "id": 14,
+      "name": "Los Angeles Lakers",
+      "division": "Pacific",
+      "conference": "West",
+      "championships": 17
+    },
+    {
+      "id": 15,
+      "name": "Memphis Grizzlies",
+      "division": "Southwest",
+      "conference": "West",
+      "championships": 0
+    },
+    {
+      "id": 16,
+      "name": "Miami Heat",
+      "division": "Southeast",
+      "conference": "East",
+      "championships": 3
+    },
+    {
+      "id": 17,
+      "name": "Milwaukee Bucks",
+      "division": "Central",
+      "conference": "East",
+      "championships": 2
+    },
+    {
+      "id": 18,
+      "name": "Minnesota Timberwolves",
+      "division": "Northwest",
+      "conference": "West",
+      "championships": 0
+    },
+    {
+      "id": 19,
+      "name": "New Orleans Pelicans",
+      "division": "Southwest",
+      "conference": "West",
+      "championships": 0
+    },
+    {
+      "id": 20,
+      "name": "New York Knicks",
+      "division": "Atlantic",
+      "conference": "East",
+      "championships": 2
+    },
+    {
+      "id": 21,
+      "name": "Oklahoma City Thunder",
+      "division": "Northwest",
+      "conference": "West",
+      "championships": 1
+    },
+    {
+      "id": 22,
+      "name": "Orlando Magic",
+      "division": "Southeast",
+      "conference": "East",
+      "championships": 0
+    },
+    {
+      "id": 23,
+      "name": "Philadelphia 76ers",
+      "division": "Atlantic",
+      "conference": "East",
+      "championships": 3
+    },
+    {
+      "id": 24,
+      "name": "Phoenix Suns",
+      "division": "Pacific",
+      "conference": "West",
+      "championships": 0
+    },
+    {
+      "id": 25,
+      "name": "Portland Trail Blazers",
+      "division": "Northwest",
+      "conference": "West",
+      "championships": 1
+    },
+    {
+      "id": 26,
+      "name": "Sacramento Kings",
+      "division": "Pacific",
+      "conference": "West",
+      "championships": 1
+    },
+    {
+      "id": 27,
+      "name": "San Antonio Spurs",
+      "division": "Southwest",
+      "conference": "West",
+      "championships": 5
+    },
+    {
+      "id": 28,
+      "name": "Toronto Raptors",
+      "division": "Atlantic",
+      "conference": "East",
+      "championships": 1
+    },
+    {
+      "id": 29,
+      "name": "Utah Jazz",
+      "division": "Northwest",
+      "conference": "West",
+      "championships": 0
+    },
+    {
+      "id": 30,
+      "name": "Washington Wizards",
+      "division": "Southeast",
+      "conference": "East",
+      "championships": 1
+    }
+  ]
+}
