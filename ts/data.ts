@@ -1,98 +1,73 @@
-// nba-api.ts
+interface Team {
+  id: number;
+  name: string;
+  abbreviation: string;
+}
 
-//  interface playerInfo {
-//   id: number;
-//   name: string;
-//   firstName: string;
-//   lastName: string;
-//   birthday: string;
-//   college: string;
-//   country: string;
-//   number: number;
-//   height: string
-//   feet: null;
-//   inches: null;
-// }
+interface Player {
+  id: number;
+  name: string;
+  number: string | null; // Player's jersey number can be null
+  team: {
+    id: number;
+    name: string;
+    abbreviation: string;
+  };
+}
 
-// Store API headers for RapidAPI
-const apiHeaders = {
-  'X-RapidAPI-Key': '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020',
-  'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com',
-};
+interface ApiResponse<T> {
+  response: T[];
+}
 
-// Fetching nba teams and build a mapping
-async function fetchTeams(): Promise<{ [key: number]: string }> {
+async function fetchTeams(): Promise<ApiResponse<Team>> {
   const apiUrl = 'https://api-nba-v1.p.rapidapi.com/teams';
 
   try {
     const response = await fetch(apiUrl, {
       method: 'GET',
-      headers: apiHeaders,
+      headers: {
+        'x-rapidapi-key': '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020',
+        'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com',
+      },
     });
 
     if (!response.ok) {
       throw new Error(`API error: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    const teamNames: { [key: number]: string } = {};
-
-    // Build the team names mapping
-    data.response.forEach((team: { id: number; name: string }) => {
-      teamNames[team.id] = team.name;
-    });
-
-    return teamNames;
+    return await response.json();
   } catch (error) {
-    console.error('Error fetching team data:', error);
-    return {};
+    console.error('Error fetching teams:', error);
+    return { response: [] };
   }
 }
 
-// building the dynamic API URL
-function getNbaApiUrl(teamId: number, season: number): string {
-  return `https://api-nba-v1.p.rapidapi.com/players?team=${teamId}&season=${season}`;
-}
-
-// fetching players from the NBA API
-async function getNbaPlayers(
+async function fetchPlayers(
   teamId: number,
   season: number,
-  teamNames: { [key: number]: string },
-): Promise<void> {
-  const apiUrl = getNbaApiUrl(teamId, season);
+): Promise<ApiResponse<Player>> {
+  const apiUrl = `https://api-nba-v1.p.rapidapi.com/players?team=${teamId}&season=${season}`;
 
   try {
     const response = await fetch(apiUrl, {
       method: 'GET',
-      headers: apiHeaders,
+      headers: {
+        'x-rapidapi-key': '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020',
+        'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com',
+      },
     });
 
     if (!response.ok) {
       throw new Error(`API error: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    const teamName = teamNames[teamId];
-    console.log(
-      `NBA Players for ${teamName} during the ${season}: season`,
-      data,
-    );
+    const testPlayers = await response.json();
+    console.log(testPlayers);
   } catch (error) {
-    console.error('Error fetching data from NBA API:', error);
+    console.error('Error fetching players:', error);
+    return { response: [] };
   }
 }
 
-// Main function to orchestrate fetching teams and players
-async function main(teamId: number, season: number): Promise<void> {
-  const teamNames = await fetchTeams(); // Fetching team names and IDs
-
-  // Call the function to get players
-  await getNbaPlayers(teamId, season, teamNames);
-}
-
-// Calling the main function with dynamic inputs
-const teamId = 1; // Change this to any valid NBA team ID
-const season = 2022; // Change this to any season year
-
-main(teamId, season);
+fetchPlayers(1, 2023);
+// fetchTeams();
