@@ -1,20 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Project</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <!-- NavBar -->
+      <div class="container"></div>
+      <nav>
+        <ul>
+          <li><a href="#">Players</a></li>
+          <li><a href="#">Teams</a></li>
+          <li><a href="#">Schedule</a></li>
+          <li><a href="#">Standings</a></li>
+        </ul>
+      </nav>
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="view-container">
+          <div class="view" data-view="players"></div>
+        </div>
+        <div class="search">
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search a team or a player" />
+          <button class="search-button">Search</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Player Name</th>
+            <th>Jersey #</th>
+            <th>Height</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+        <tbody id="player-list">
+          <!-- Players will be populated here -->
+        </tbody>
+      </table>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

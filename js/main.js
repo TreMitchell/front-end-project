@@ -1,19 +1,16 @@
+"use strict";
 // const $searchContainer = document.querySelector(
 //   'search-container',
 // ) as HTMLDivElement;
 // const $search = document.querySelector('search') as HTMLDivElement;
-
 // if (!$searchContainer) throw new Error('$searchContainer query failed!');
 // if (!$search) throw new Error('$search query failed!');
-
 // // $searchContainer.addEventListener('click', (event: MouseEvent) => {
 // //   const $eventTarget = event.target as HTMLDivElement;
 // //   if ($eventTarget.matches('.search')) {
 // //     $search.forEach((search) => {
-
 // //     })
 // // }
-
 // const url = 'https://api-nba-v1.p.rapidapi.com/players?team=1';
 // const options = {
 //   method: 'GET',
@@ -53,7 +50,6 @@
 //   return $row;
 // }
 // fetchTeams();
-
 // Wait for the DOM to fully load
 // document.addEventListener('DOMContentLoaded', () => {
 //   // Fetching the NBA players data from the JSON file
@@ -64,7 +60,6 @@
 //       const teamsList = document.getElementById('teams-list');
 //       const searchButton = document.getElementById('search-button');
 //       const searchInput = document.getElementById('search-input');
-
 //       function displayTeams(teamsToDisplay) {
 //         teamsList.innerHTML = ''; // Clear previous results
 //         teamsToDisplay.forEach((team) => {
@@ -80,10 +75,8 @@
 //       `;
 //     });
 //   }
-
 //   // Initial display of all teams
 //   displayTeams(teams);
-
 //    // Search functionality
 //   searchButton.addEventListener('click', () => {
 //     const searchTerm = searchInput.value.toLowerCase();
@@ -95,62 +88,48 @@
 //     })
 //     .catch((error) => console.error('Error loading player data:', error));
 // });
-
 // main.ts
-
 document.addEventListener('DOMContentLoaded', async () => {
-  const $playerList = document.getElementById(
-    'player-list',
-  ) as HTMLTableSectionElement;
-  const $searchButton = document.querySelector(
-    '.search-button',
-  ) as HTMLButtonElement;
-  const $searchInput = document.querySelector(
-    '.search-input',
-  ) as HTMLInputElement;
-
-  if (!$playerList) throw new Error('$playerList query failed!');
-  if (!$searchButton) throw new Error('$searchButton query failed!');
-  if (!$searchInput) throw new Error('$searchInput query failed!');
-
-  $searchButton.addEventListener('click', async () => {
-    const searchTerm = $searchInput.value.toLowerCase();
-    $playerList.textContent = ''; // Clear previous results
-    const fetchPlayers = await fetch(
-      `https://api-nba-v1.p.rapidapi.com/players?search=${searchTerm}`,
-      {
-        headers: {
-          'x-rapidapi-key':
-            '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020',
-          'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com',
-        },
-      },
-    );
-    const searchResults = await fetchPlayers.json();
-    console.log(searchResults);
-    for (const player of searchResults.response) {
-      // const nbaPlayers = searchResults.response.filter(
-      //   (player) => player.leagues.standard.active === true,
-      //   console.log(nbaPlayers);
-      // );
-
-      const row = document.createElement('tr');
-      const playerName = document.createElement('td');
-      // repeat with whatever else you want to add (height, age, etc..)
-      const playerHeight = document.createElement('td');
-      const jersey = document.createElement('td');
-      const weight = document.createElement('td');
-
-      playerName.textContent = player.firstname + ' ' + player.lastname;
-      jersey.textContent = player.leagues.standard.jersey;
-      // repeat with whatever else you want to add (inches, age, etc..)
-      playerHeight.textContent =
-        player.height.feets + "' " + player.height.inches + '"' ?? 'n/a';
-      weight.textContent = player.weight.pounds;
-
-      row.append(playerName, jersey, playerHeight, weight);
-      $playerList.appendChild(row);
-      console.log(player.firstname);
-    }
-  });
+    const $playerList = document.getElementById('player-list');
+    const $searchButton = document.querySelector('.search-button');
+    const $searchInput = document.querySelector('.search-input');
+    if (!$playerList)
+        throw new Error('$playerList query failed!');
+    if (!$searchButton)
+        throw new Error('$searchButton query failed!');
+    if (!$searchInput)
+        throw new Error('$searchInput query failed!');
+    $searchButton.addEventListener('click', async () => {
+        const searchTerm = $searchInput.value.toLowerCase();
+        $playerList.textContent = ''; // Clear previous results
+        const fetchPlayers = await fetch(`https://api-nba-v1.p.rapidapi.com/players?search=${searchTerm}`, {
+            headers: {
+                'x-rapidapi-key': '4f1eec5d75msh66bdbaae2d9c120p19139ejsn99bedfab1020',
+                'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com',
+            },
+        });
+        const searchResults = await fetchPlayers.json();
+        console.log(searchResults);
+        for (const player of searchResults.response) {
+            // const nbaPlayers = searchResults.response.filter(
+            //   (player) => player.leagues.standard.active === true,
+            //   console.log(nbaPlayers);
+            // );
+            const row = document.createElement('tr');
+            const playerName = document.createElement('td');
+            // repeat with whatever else you want to add (height, age, etc..)
+            const playerHeight = document.createElement('td');
+            const jersey = document.createElement('td');
+            const weight = document.createElement('td');
+            playerName.textContent = player.firstname + ' ' + player.lastname;
+            jersey.textContent = player.leagues.standard.jersey;
+            // repeat with whatever else you want to add (inches, age, etc..)
+            playerHeight.textContent =
+                player.height.feets + "' " + player.height.inches + '"' ?? 'n/a';
+            weight.textContent = player.weight.pounds;
+            row.append(playerName, jersey, playerHeight, weight);
+            $playerList.appendChild(row);
+            console.log(player.firstname);
+        }
+    });
 });
